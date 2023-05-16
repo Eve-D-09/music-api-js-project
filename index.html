@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="normalise.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,600;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <title>Music preview API</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script defer src="try.js"></script>
+  </head>
+  <body>
+    <!-- <div class="lds-hourglass"></div> -->
+    <div id="root"></div>
+
+    <header>
+      <div class="header-wrap">
+        <h1>My Song Preview App</h1>
+        <div class="right">
+          <p>My playlist</p>
+          <img src="./img/heart.svg" alt="pink-heart" />
+        </div>
+      </div>
+    </header>
+    <main>
+      <!-- search container section -->
+
+      <div class="content-wrapper">
+        <div class="search-container">
+          <form action="get" id="form">
+            <div><label for="search">Search for music</label></div>
+            <div>
+              <input
+                type="text"
+                placeholder="ex. artist name, song title, album title"
+                id="searchInput"
+              />
+            </div>
+
+            <div class="search-button">
+              <button id="searchButton" type="submit" value="search">
+                Search
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- player section -->
+        <div class="player-container">
+          <div class="player-wrapper">
+            <div class="player-details">
+              <p class="heart-box">
+                Now playing:
+                <svg
+                  width="45px"
+                  height="45px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke="#ed39b4"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M19.3 5.71002C18.841 5.24601 18.2943 4.87797 17.6917 4.62731C17.0891 4.37666 16.4426 4.2484 15.79 4.25002C15.1373 4.2484 14.4909 4.37666 13.8883 4.62731C13.2857 4.87797 12.739 5.24601 12.28 5.71002L12 6.00002L11.72 5.72001C10.7917 4.79182 9.53273 4.27037 8.22 4.27037C6.90726 4.27037 5.64829 4.79182 4.72 5.72001C3.80386 6.65466 3.29071 7.91125 3.29071 9.22002C3.29071 10.5288 3.80386 11.7854 4.72 12.72L11.49 19.51C11.6306 19.6505 11.8212 19.7294 12.02 19.7294C12.2187 19.7294 12.4094 19.6505 12.55 19.51L19.32 12.72C20.2365 11.7823 20.7479 10.5221 20.7442 9.21092C20.7405 7.89973 20.2218 6.64248 19.3 5.71002Z"
+                      fill="#000000"
+                    ></path>
+                  </g>
+                </svg>
+              </p>
+              <picture id="artist-img"></picture>
+              <audio id="audio"></audio>
+              <p id="artist-name">Artist</p>
+              <p id="song-title">Song</p>
+              <p id="album-title">Album</p>
+
+              <div id="player"></div>
+              
+
+              <button id="next">
+                <svg
+                  fill="#f587ce"
+                  width="64px"
+                  height="64px"
+                  viewBox="0 0 32.00 32.00"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke="#f587ce"
+                  stroke-width="0.00032"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke="#CCCCCC"
+                    stroke-width="0.064"
+                  />
+                  <g id="SVGRepo_iconCarrier">
+                    <title>forward</title>
+                    <path
+                      d="M0 24q0 0.544 0.288 1.056t0.768 0.736q0.48 0.256 1.056 0.224t0.992-0.32l12-8q0.896-0.608 0.896-1.696t-0.896-1.632l-12-8q-0.448-0.32-0.992-0.352t-1.056 0.224q-0.48 0.256-0.768 0.736t-0.288 1.024v16zM16 24q0 0.544 0.288 1.056t0.768 0.736q0.48 0.256 1.056 0.224t0.992-0.32l12-8q0.896-0.608 0.896-1.696t-0.896-1.632l-12-8q-0.448-0.32-0.992-0.352t-1.056 0.224q-0.48 0.256-0.768 0.736t-0.288 1.024v16z"
+                    />
+                  </g>
+                </svg>
+              </button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </main>
+
+    <footer>
+
+      <p>Eve & <img src="./img/deezer-logo3.jpg" alt="deezer-logo" /> Deezer</p>
+      <p>Copyright&copy; 2023 - All rights reserved</p>
+    </footer>
+  </body>
+</html>
+
+
